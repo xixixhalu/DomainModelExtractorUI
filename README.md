@@ -28,3 +28,5 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
 ## MongoDB
 
+- Install MongoDB: [Install MongoDB Community Edition — MongoDB Manual](https://docs.mongodb.com/manual/administration/install-community/)
+

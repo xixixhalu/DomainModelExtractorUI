@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 flask = "*"
+flask-pymongo = "*"
+flask-bcrypt = "*"
+flask-cors = "*"
+flask-jwt-extended = "*"
 
 [dev-packages]
 autopep8 = "*"
