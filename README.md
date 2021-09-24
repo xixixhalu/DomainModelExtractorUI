@@ -36,7 +36,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
     - endpoint: `/users/login`  
 
-    - method: **POST ** `Content-Type: application/json`
+    - method: **POST** `Content-Type: application/json`
 
     - body:
 
