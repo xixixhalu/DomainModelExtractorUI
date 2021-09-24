@@ -26,7 +26,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
 ### MongoDB
 
-- Install MongoDB: [Install MongoDB Community Edition — MongoDB Manual]([Install MongoDB Community Edition on macOS — MongoDB Manual](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-community-edition))
+- Install MongoDB: [Install MongoDB Community Edition — MongoDB Manual](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-community-edition)
 - Run MongoDB: [Run MongoDB Community Edition — MongoDB Manual](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb-community-edition)
 - `// TODO`
 
