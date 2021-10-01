@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { login } from './UserFunctions'
+import { loginRequest } from './Utilities'
 
 class Login extends Component {
     constructor() {
@@ -13,26 +13,33 @@ class Login extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onChange (e) {
+
+    onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit (e) {
+    onSubmit(e) {
         e.preventDefault()
-
         const user = {
             email: this.state.email,
             password: this.state.password
         }
 
-        login(user).then(res => {
-            if (!res.error) {
+        loginRequest(user).then(response => {
+            if (response.status === 200) {
+                localStorage.setItem('usertoken', response.data.token)
                 this.props.history.push(`/profile`)
+                return response.data.token
+            } else if (response.status === 401) {
+                console.error("Login Error");
+                alert("User does not exist or invaild combination!");
+
             }
+
         })
     }
 
-    render () {
+    render() {
         return (
             <div className="container">
                 <div className="row">

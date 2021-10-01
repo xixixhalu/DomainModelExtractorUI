@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const register = newUser => {
+export const registerRequest = newUser => {
     return axios
         .post("users/register", {
             first_name: newUser.first_name,
@@ -13,17 +13,19 @@ export const register = newUser => {
         })
 }
 
-export const login = user => {
+export const loginRequest = user => {
     return axios
         .post("users/login", {
             email: user.email,
             password: user.password
         })
         .then(response => {
-            localStorage.setItem('usertoken', response.data.token)
-            return response.data.token
+            console.log("response: ", response);
+            return response
         })
         .catch(err => {
-            console.log(err)
+            if (err.response.status === 401) {
+                return (err.response)
+            }
         })
 }

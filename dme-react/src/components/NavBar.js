@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 class Navbar extends Component {
-    logOut (e) {
+    logOut(e) {
         e.preventDefault()
         localStorage.removeItem('usertoken')
         this.props.history.push(`/`)
     }
 
-    render () {
+    render() {
         const loginRegLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
@@ -24,13 +24,28 @@ class Navbar extends Component {
             </ul>
         )
 
-        const userLink = (
+        const userProfile = (
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <Link to="/profile" className="nav-link">
-                        User
+                        Profile
                     </Link>
                 </li>
+
+            </ul>
+        )
+        const DME = (
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link to="/profile" className="nav-link">
+                        DME
+                    </Link>
+                </li>
+            </ul>
+        )
+
+        const LogoutMenu = (
+            <ul className="navbar-nav">
                 <li className="nav-item">
                     <a href="#" onClick={this.logOut.bind(this)} className="nav-link">
                         Logout
@@ -38,6 +53,7 @@ class Navbar extends Component {
                 </li>
             </ul>
         )
+
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
@@ -60,7 +76,8 @@ class Navbar extends Component {
                             </Link>
                         </li>
                     </ul>
-                    {localStorage.usertoken ? userLink : loginRegLink}
+                    {localStorage.usertoken ? <> {DME} {userProfile} {LogoutMenu}</> : loginRegLink}
+
                 </div>
             </nav>
         )

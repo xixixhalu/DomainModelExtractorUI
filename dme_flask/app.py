@@ -1,4 +1,4 @@
-from flask import Flask, json, jsonify, request
+from flask import Flask, json, jsonify, request, Response
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -63,9 +63,17 @@ def login():
             })
             result = jsonify({'token': access_token})
         else:
-            result = jsonify({"error": "Invalid username and password"})
+            result = Response(
+                '{"error": "Unauthorized: Invalid username and password."}',
+                status=401,
+                mimetype='application/json'
+            )
     else:
-        result = jsonify({"result": "No results found"})
+        result = Response(
+            '{"error": "Unauthorized: No results found"}',
+            status=401,
+            mimetype='application/json'
+        )
     return result
 
 
@@ -112,6 +120,7 @@ def get_result_img():
     if win_cond:
         return get_result_VM_from_NLP(win_cond)
     return "No win condition is given"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
