@@ -8,7 +8,7 @@ import './DME.scss'
 import 'react-medium-image-zoom/dist/styles.css'
 import { useState } from 'react';
 
-const DME = () => {
+const DMEWrapper = () => {
     const [userInput, setUserInput] = useState("Input win conditions here")
     const [domainModelImg, setDomainModelImg] = useState("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
     const [detectionResult, setDetectionResult] = useState("");
@@ -83,7 +83,12 @@ const DME = () => {
                 <div className="col">
                     <div className="row output-row DetectionResultWrapper">
                         <div className="DMEHeaer">Detection Result</div>
-                        <textarea id="output_area" className="DetectionResultTextArea" value={detectionResult}></textarea>
+                        <textarea
+                            id="output_area"
+                            className="DetectionResultTextArea"
+                            value={detectionResult}
+                            readOnly
+                        />
                     </div>
                     <div className="row image-row  ModelWrapper">
                         <div className="DMEHeaer">Domain Model</div>
@@ -100,6 +105,14 @@ const DME = () => {
             </div>
         </div>
     </>
+    )
+}
+
+const DME = () => {
+    return (
+        <>
+            {localStorage.usertoken ? <DMEWrapper /> : <h1>Please Login First</h1>}
+        </>
     )
 }
 

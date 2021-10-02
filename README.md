@@ -21,9 +21,10 @@ cd dme-react
 cd dme_flask
 ```
 
-I am using [Pipenv](https://github.com/pypa/pipenv) for Python package management. 
+I am using [Pipenv](https://github.com/pypa/pipenv) for Python package management.  
 
 - install dependencies `pipenv install --dev`
+- activate virtual environment ` pipenv shell `
 - runs the app in the development mode `./run`  (for *nix/macOS)
 
 ### MongoDB
