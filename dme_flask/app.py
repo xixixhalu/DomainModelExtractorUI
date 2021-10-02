@@ -108,7 +108,7 @@ def get_result_VM_from_NLP(win_cond):
     # TO BE ADDED (connection to DomainExtractor)
     # send generate request to DomainExtractor
     # get image link
-    return {"img": "https://via.placeholder.com/600/92c952"}
+    return {"img": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"}
 
 
 # this endpoint will be used to get user stories/win condition

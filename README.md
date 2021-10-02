@@ -6,6 +6,8 @@
 ## Env Setup
 ### Front-end
 
+Node version: LTS/fermium ( v14.16.0)
+
 ```
 cd dme-react
 ```

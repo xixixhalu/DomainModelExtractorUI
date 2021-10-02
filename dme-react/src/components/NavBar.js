@@ -10,7 +10,7 @@ class Navbar extends Component {
 
     render() {
         const loginRegLink = (
-            <ul className="navbar-nav">
+            <ul className="navbar-nav navbar-light">
                 <li className="nav-item">
                     <Link to="/login" className="nav-link">
                         Login
@@ -25,7 +25,7 @@ class Navbar extends Component {
         )
 
         const userProfile = (
-            <ul className="navbar-nav">
+            <ul className="navbar-nav navbar-light">
                 <li className="nav-item">
                     <Link to="/profile" className="nav-link">
                         Profile
@@ -35,9 +35,9 @@ class Navbar extends Component {
             </ul>
         )
         const DME = (
-            <ul className="navbar-nav">
+            <ul className="navbar-nav navbar-light">
                 <li className="nav-item">
-                    <Link to="/profile" className="nav-link">
+                    <Link to="/DME" className="nav-link">
                         DME
                     </Link>
                 </li>
@@ -45,7 +45,7 @@ class Navbar extends Component {
         )
 
         const LogoutMenu = (
-            <ul className="navbar-nav">
+            <ul className="navbar-nav navbar-light">
                 <li className="nav-item">
                     <a href="#" onClick={this.logOut.bind(this)} className="nav-link">
                         Logout
@@ -57,6 +57,9 @@ class Navbar extends Component {
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+                <a className="navbar-brand" href="/">
+                    <img src="https://www.usc.edu/wp-content/themes/usc-homepage-2017/assets/images/favicon.ico" alt="USC Logo" width="30" height="30"></img>
+                </a>
                 <button className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
@@ -69,7 +72,8 @@ class Navbar extends Component {
 
                 <div className="collapse navbar-collapse justify-content-md-center"
                     id="navbar1">
-                    <ul className="navbar-nav">
+
+                    <ul className="navbar-nav navbar-light">
                         <li className="nav-item">
                             <Link to="/" className="nav-link">
                                 Home
