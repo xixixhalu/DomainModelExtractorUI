@@ -77,49 +77,17 @@ def login():
     return result
 
 
-# Send request to DomainExtractor.
-# get json [(“informtion”, 7, [“information”, ...]), ...] or txt file
-# return json file
-def get_misspell_from_NLP(win_cond):
-    # TO BE ADDED (connection to DomainExtractor)
-    # send misspell check request to DomainExtractor
-    # get list of unknown words and replace suggestion
-    msg1 = {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
-    msg2 = [("worrd", 1, ["word", "world"]), ("nigh", 2, ["night", "high"])]
-    json_file = json.dumps(msg2)
-    return json_file
-
-
-# This endpoint will be used to check misspell of user input
-# The user input will be sent to DomainExtractor to run Step 1.
-# Return string (will be replaced with json)
-@app.route('/check', methods=['POST'])
+@app.route('/detect', methods=['POST'])
 def search_for_misspell():
-    win_cond = request.data.decode('UTF-8')
-    if win_cond:
-        return get_misspell_from_NLP(win_cond)
-    return "No win condition is given"
+    print(request.data)
+    result = {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
+    return jsonify(result)
 
 
-# Send request to DomainExtractor
-# get link to the image
-# return json in following format {img: link}
-def get_result_VM_from_NLP(win_cond):
-    # TO BE ADDED (connection to DomainExtractor)
-    # send generate request to DomainExtractor
-    # get image link
-    return {"img": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"}
-
-
-# this endpoint will be used to get user stories/win condition
-# and using them retrieve the Visualize the domain model from
-# the DomainExtractor (Step 2 through 5)
-@app.route('/generate', methods=['POST'])
+@app.route('/model', methods=['POST'])
 def get_result_img():
-    win_cond = request.data.decode('UTF-8')
-    if win_cond:
-        return get_result_VM_from_NLP(win_cond)
-    return "No win condition is given"
+    print(request.data)
+    return jsonify({"img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"})
 
 
 if __name__ == '__main__':
