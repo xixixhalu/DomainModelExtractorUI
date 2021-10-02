@@ -11,12 +11,9 @@ import { useState } from 'react';
 const DME = () => {
     const [userInput, setUserInput] = useState("Input win conditions here")
     const [domainModelImg, setDomainModelImg] = useState("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
-    const [detectionResult, setDetectionResult] = useState("happy");
+    const [detectionResult, setDetectionResult] = useState("");
 
     const getDetectionResult = () => {
-        const user = {
-            name: "happy"
-        };
         axios
             .post("/detect", {
                 userInput: userInput
