@@ -1,0 +1,4 @@
+[submodule "dme_flask/dme_ui_api"]
+	path = dme_flask/dme_ui_api
+	url = https://github.com/xixixhalu/DomainModelExtractor.git
+	branch = dme_ui_api
