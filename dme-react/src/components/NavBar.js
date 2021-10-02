@@ -46,7 +46,8 @@ class Navbar extends Component {
 
         const LogoutMenu = (
             <ul className="navbar-nav">
-                <li className="nav-item">
+                <li className="nav-item"> 
+		{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a href="#" onClick={this.logOut.bind(this)} className="nav-link">
                         Logout
                     </a>
