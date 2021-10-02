@@ -23,7 +23,7 @@ const DME = () => {
             })
             .then(response => {
                 if (response.status === 200) {
-                    console.log(response.data)
+                    setDetectionResult(response.data.option)
                 } else {
                     alert("Get Model Image Failed!");
                     console.error(response)
@@ -38,7 +38,6 @@ const DME = () => {
             })
             .then(response => {
                 if (response.status === 200) {
-                    console.log(response.data)
                     setDomainModelImg(response.data.img)
                 } else {
                     alert("Get Model Image Failed!");
@@ -87,7 +86,7 @@ const DME = () => {
                 <div className="col">
                     <div className="row output-row DetectionResultWrapper">
                         <div className="DMEHeaer">Detection Result</div>
-                        <textarea id="output_area" className="DetectionResultTextArea" />
+                        <textarea id="output_area" className="DetectionResultTextArea" value={detectionResult}></textarea>
                     </div>
                     <div className="row image-row  ModelWrapper">
                         <div className="DMEHeaer">Domain Model</div>
