@@ -1,0 +1,22 @@
+.DMEWrapper {
+    .DMEHeaer {
+        background-color: #333333;
+        color: white;
+        border-radius: 5px 5px 0px 0px;
+        height: 25px;
+        padding-left: 5px;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .CodeMirrorWrapper {
+        background-color: #333333;
+        margin-bottom: 10px;
+
+    }
+
+    .DetectionResultTextArea {
+        min-height: 300px;
+    }
+}
+

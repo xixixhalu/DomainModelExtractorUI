@@ -28,7 +28,7 @@ class Login extends Component {
         loginRequest(user).then(response => {
             if (response.status === 200) {
                 localStorage.setItem('usertoken', response.data.token)
-                this.props.history.push(`/profile`)
+                this.props.history.push(`/DME`)
                 return response.data.token
             } else if (response.status === 401) {
                 console.error("Login Error");

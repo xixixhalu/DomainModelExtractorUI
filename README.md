@@ -6,6 +6,8 @@
 ## Env Setup
 ### Front-end
 
+Node version: LTS/fermium ( v14.16.0)
+
 ```
 cd dme-react
 ```
@@ -19,9 +21,10 @@ cd dme-react
 cd dme_flask
 ```
 
-I am using [Pipenv](https://github.com/pypa/pipenv) for Python package management. 
+I am using [Pipenv](https://github.com/pypa/pipenv) for Python package management.  
 
 - install dependencies `pipenv install --dev`
+- activate virtual environment ` pipenv shell `
 - runs the app in the development mode `./run`  (for *nix/macOS)
 
 ### MongoDB
@@ -39,7 +42,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
     - method: **POST** `Content-Type: application/json`
 
-    - body:
+    - request body: 
 
         - ```json
             {
@@ -54,7 +57,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
     - method: **POST**  `Content-Type: application/json`
 
-    - body: 
+    - request body: 
 
         - ```json
             {
@@ -65,9 +68,56 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
             }
             ```
 
-            
+- Check win conditions: 
 
+    - endpoint: `/detect`
+
+    - method: **POST**  `Content-Type: application/json`
+
+    - request body: 
+
+        - ```json
+            {
+                "userInput": "win condtiions",
+            }
+            ```
+        
+    - response body:
     
+        - ```json
+            {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
+            ```
+    
+- Generate domain model: 
 
+    - endpoint: `/model`
+
+    - method: **POST**  `Content-Type: application/json`
+
+    - request body: 
+
+        - ```json
+            {
+                "userInput": "win condtiions",
+            }
+            ```
+            
+    
+    - response body:
+    
+        - ```json
+            {
+                "img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"
+            }
+            ```
+    
+            
+    
+    
+    
+    
+    
+    
+    
     
 
