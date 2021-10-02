@@ -68,9 +68,56 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
             }
             ```
 
-            
+- Check win conditions: 
 
+    - endpoint: `detect`
+
+    - method: **POST**  `Content-Type: application/json`
+
+    - body: 
+
+        - ```json
+            {
+                "userInput": "win condtiions",
+            }
+            ```
+        
+    - response
     
+        - ```json
+            {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
+            ```
+    
+- Generate domain model: 
 
+    - endpoint: `/model`
+
+    - method: **POST**  `Content-Type: application/json`
+
+    - body: 
+
+        - ```json
+            {
+                "userInput": "win condtiions",
+            }
+            ```
+            
+    
+    - response:
+    
+        - ```json
+            {
+                "img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"
+            }
+            ```
+    
+            
+    
+    
+    
+    
+    
+    
+    
     
 
