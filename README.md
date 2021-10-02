@@ -42,7 +42,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
     - method: **POST** `Content-Type: application/json`
 
-    - body:
+    - request body: 
 
         - ```json
             {
@@ -57,7 +57,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
     - method: **POST**  `Content-Type: application/json`
 
-    - body: 
+    - request body: 
 
         - ```json
             {
@@ -70,11 +70,11 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
 - Check win conditions: 
 
-    - endpoint: `detect`
+    - endpoint: `/detect`
 
     - method: **POST**  `Content-Type: application/json`
 
-    - body: 
+    - request body: 
 
         - ```json
             {
@@ -82,7 +82,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
             }
             ```
         
-    - response
+    - response body:
     
         - ```json
             {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
@@ -94,7 +94,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
     - method: **POST**  `Content-Type: application/json`
 
-    - body: 
+    - request body: 
 
         - ```json
             {
@@ -103,7 +103,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
             ```
             
     
-    - response:
+    - response body:
     
         - ```json
             {
