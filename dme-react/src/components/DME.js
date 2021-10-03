@@ -63,7 +63,7 @@ const DMEWrapper = () => {
                             theme="dark"
                             autoFocus={true}
                             onChange={(value, viewUpdate) => {
-                                console.log('CodeMirror value:', value);
+                                // console.log('CodeMirror value:', value);
                                 setUserInput(value)
                             }}
                         />

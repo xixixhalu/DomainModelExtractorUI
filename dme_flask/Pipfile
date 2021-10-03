@@ -9,7 +9,6 @@ flask-pymongo = "*"
 flask-bcrypt = "*"
 flask-cors = "*"
 flask-jwt-extended = "*"
-numpy = "*"
 
 [dev-packages]
 autopep8 = "*"
