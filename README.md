@@ -15,9 +15,7 @@ cd dme-react
 - install dependencies `npm i`
 - runs the app in the development mode `npm start`
 
-#### Front-end: Deploy
-- [Creating a Production Build | Create React App (create-react-app.dev)](https://create-react-app.dev/docs/production-build)
-- [Deployment | Create React App (create-react-app.dev)](https://create-react-app.dev/docs/deployment/)
+- https://create-react-app.dev/docs/deployment/)
 
 ### Back-end
 
@@ -34,9 +32,17 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 ### MongoDB
 
 - Install MongoDB: [macOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-community-edition), [Linux](https://docs.mongodb.com/manual/administration/install-on-linux/), [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+
 - Run MongoDB: [macOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb-community-edition), [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#run-mongodb-community-edition-as-a-windows-service)
 
-    
+
+
+## Front-end: Deploy
+
+- [Creating a Production Build | Create React App (create-react-app.dev)](https://create-react-app.dev/docs/production-build)
+- [Deployment | Create React App (create-react-app.dev)](  
+
+
 
 ## APIs
 
