@@ -7,6 +7,8 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 
+from dme_ui_api.api_functions import *
+
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'dmelogindb'
