@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { loginRequest } from './Utilities'
+import Landing from './Landing'
+import { withRouter } from 'react-router-dom'
 
-class Login extends Component {
+class LoginWrapper extends Component {
     constructor() {
         super()
         this.state = {
@@ -76,4 +78,14 @@ class Login extends Component {
     }
 }
 
-export default Login
+const Login = () => {
+    LoginWrapper = withRouter(LoginWrapper)
+
+    return (
+        <>
+            {localStorage.usertoken ? <Landing /> : <LoginWrapper />}
+        </>
+    )
+}
+
+export default withRouter(Login)
