@@ -15,6 +15,10 @@ cd dme-react
 - install dependencies `npm i`
 - runs the app in the development mode `npm start`
 
+#### Front-end: Deploy
+- [Creating a Production Build | Create React App (create-react-app.dev)](https://create-react-app.dev/docs/production-build)
+- [Deployment | Create React App (create-react-app.dev)](https://create-react-app.dev/docs/deployment/)
+
 ### Back-end
 
 ```
