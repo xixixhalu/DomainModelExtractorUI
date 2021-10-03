@@ -35,7 +35,9 @@ const DMEWrapper = () => {
             })
             .then(response => {
                 if (response.status === 200) {
-                    setDomainModelImg(response.data.img)
+		    let format = response.data.format;
+		    let content = response.data.content;
+                    setDomainModelImg('data:image/'+format+';base64,'+content)
                 } else {
                     alert("Get Model Image Failed!");
                     console.error(response)

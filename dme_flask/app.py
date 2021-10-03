@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 
+import base64
 from dme_ui_api.api_functions import *
 
 app = Flask(__name__)
@@ -99,9 +100,11 @@ def get_result_img():
     json_data = json.loads(str(request.data, encoding='utf-8'))
     input_str_list = json_data["userInput"].split("\n")
     output = api_diagram_generator(input_str_list)
-    print(output)
-    return jsonify({"img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"})
+        
+    #return jsonify({"img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"})
+    img_base64 = base64.b64encode(output[0]).decode('utf-8')
 
+    return jsonify({"format": output[1], "content": img_base64})
 
 if __name__ == '__main__':
     app.run(debug=True)
