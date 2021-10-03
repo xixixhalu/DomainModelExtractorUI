@@ -96,7 +96,10 @@ def search_for_misspell():
 
 @app.route('/model', methods=['POST'])
 def get_result_img():
-    print(request.data)
+    json_data = json.loads(str(request.data, encoding='utf-8'))
+    input_str_list = json_data["userInput"].split("\n")
+    output = api_diagram_generator(input_str_list)
+    print(output)
     return jsonify({"img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"})
 
 
