@@ -82,9 +82,15 @@ def login():
 @app.route('/detect', methods=['POST'])
 def search_for_misspell():
     json_data = json.loads(str(request.data, encoding='utf-8'))
-    print(json_data)
-    # report_list = api_misspelling()
-    result = {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
+    input_str_list = json_data["userInput"].split("\n")
+    report_list = api_misspelling(input_str_list)
+    result_msg = ""
+    for item in report_list:
+        msg = f"Unknown word at Line {item[1]}\nSuggestion: {item[0]} -> {item[2]}\n\n"
+        result_msg += msg
+    if result_msg == "":
+        result_msg = "No concern found."
+    result = {"option": result_msg}
     return jsonify(result)
 
 
