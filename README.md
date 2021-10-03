@@ -40,9 +40,7 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 ## Front-end: Deploy
 
 - [Creating a Production Build | Create React App (create-react-app.dev)](https://create-react-app.dev/docs/production-build)
-- [Deployment | Create React App (create-react-app.dev)](  
-
-
+- [Deployment | Create React App (create-react-app.dev)](https://create-react-app.dev/docs/deployment/)
 
 ## APIs
 
