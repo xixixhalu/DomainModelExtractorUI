@@ -33,6 +33,16 @@ def register():
         request.get_json()['password']).decode('utf-8')
     created = datetime.utcnow()
 
+    exist_user = users.find_one({'email': email})
+
+    if exist_user:
+        result = Response(
+                '{"error": "Denied: Email already exits."}',
+                status=409,
+                mimetype='application/json'
+            )
+        return result
+
     user_id = users.insert({
         'first_name': first_name,
         'last_name': last_name,

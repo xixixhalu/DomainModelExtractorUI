@@ -30,7 +30,12 @@ class Register extends Component {
         }
 
         registerRequest(newUser).then(res => {
-            this.props.history.push(`/login`)
+            if (res.status === 200) {
+                this.props.history.push(`/login`)
+            } else if (res.status === 409) {
+                console.error("Register Error");
+                alert("Email already registered!");
+            }
         })
     }
 
@@ -78,7 +83,7 @@ class Register extends Component {
                                     onChange={this.onChange} />
                             </div>
                             <br/>
-                            <button type="submit" className="btn btn-lg btn-primary btn-block">
+                            <button type="submit" className="btn btn-lg btn-primary btn-block" disabled={!this.state.first_name || !this.state.last_name || !this.state.email || !this.state.password}>
                                 Register
                             </button>
                         </form>
