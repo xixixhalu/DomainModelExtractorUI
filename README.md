@@ -15,7 +15,6 @@ cd dme-react
 - install dependencies `npm i`
 - runs the app in the development mode `npm start`
 
-- https://create-react-app.dev/docs/deployment/)
 
 ### Back-end
 
