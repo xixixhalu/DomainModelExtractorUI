@@ -77,7 +77,7 @@ class Register extends Component {
                                     value={this.state.password}
                                     onChange={this.onChange} />
                             </div>
-
+                            <br/>
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
                                 Register
                             </button>

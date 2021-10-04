@@ -66,8 +66,8 @@ class LoginWrapper extends Component {
                                     value={this.state.password}
                                     onChange={this.onChange} />
                             </div>
-
-                            <button type="submit" className="btn btn-lg btn-primary btn-block">
+                            <br/>
+                            <button type="submit" className="btn btn-lg btn-primary btn-block" disabled={!this.state.email || !this.state.password}>
                                 Sign in
                             </button>
                         </form>

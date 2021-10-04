@@ -20,7 +20,7 @@ export const loginRequest = user => {
             password: user.password
         })
         .then(response => {
-            console.log("response: ", response);
+            // console.log("response: ", response);
             return response
         })
         .catch(err => {

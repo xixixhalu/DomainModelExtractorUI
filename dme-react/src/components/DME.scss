@@ -1,22 +1,58 @@
 .DMEWrapper {
     .DMEHeaer {
-        background-color: #333333;
-        color: white;
-        border-radius: 5px 5px 0px 0px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 5px 5px 0 0;
+        color: rgb(255, 255, 255);
         height: 25px;
-        padding-left: 5px;
-        margin-top: 10px;
-        width: 100%;
     }
 
     .CodeMirrorWrapper {
-        background-color: #333333;
-        margin-bottom: 10px;
-
+        //background-color: #333333;
+        //margin-bottom: 10px;
+        height : 100%;
+        padding: 0;
     }
+
+    .react-codemirror2, .CodeMirror { height: 100%; }
+    .CodeMirror { border: 1px solid; }
 
     .DetectionResultTextArea {
-        min-height: 300px;
+        //min-height: 300px;
     }
+
+    #output_area {
+        resize: none;
+        text-align:left;
+        width: 100%;
+        height: 85%;
+        border: none;
+    }
+
+    .image_area {
+        height: 100%;
+        align-items:center;
+    }
+
+}
+
+.row {
+    margin: 2px 0;
+}
+
+.input-row {
+    height: 75vh;
+    width: 100%;
+}
+
+.control-row {
+    height: 20vh;
+    display:flex;
+    align-items:center;
+}
+
+.output-row, .image-row {
+    border: 1px solid;
+    border-radius: 7px 7px 0 0;
+    height: 45%;
 }
 

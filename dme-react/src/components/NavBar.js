@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
+import './NavBar.scss'
+
 class Navbar extends Component {
     logOut(e) {
         e.preventDefault()
@@ -47,7 +49,7 @@ class Navbar extends Component {
         const LogoutMenu = (
             <ul className="navbar-nav navbar-light">
                 <li className="nav-item"> 
-		{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+		            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a href="#" onClick={this.logOut.bind(this)} className="nav-link">
                         Logout
                     </a>
@@ -57,10 +59,13 @@ class Navbar extends Component {
 
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
-                <a className="navbar-brand" href="/">
-                    <img src="https://www.usc.edu/wp-content/themes/usc-homepage-2017/assets/images/favicon.ico" alt="USC Logo" width="30" height="30"></img>
-                </a>
+            <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+                <div className="container-fluid">
+                    {/* <a className="navbar-brand" href="/">
+                        <img src="https://www.usc.edu/wp-content/themes/usc-homepage-2017/assets/images/favicon.ico" alt="USC Logo" width="30" height="30"></img>
+                    </a> */}
+                    <a className="navbar-brand" href="/">Domain Model Extractor <span className="fw-lighter version">beta</span></a>
+                </div>
                 <button className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
@@ -84,6 +89,7 @@ class Navbar extends Component {
                     {localStorage.usertoken ? <> {DME} {userProfile} {LogoutMenu}</> : loginRegLink}
 
                 </div>
+                &nbsp;&nbsp;
             </nav>
         )
     }
