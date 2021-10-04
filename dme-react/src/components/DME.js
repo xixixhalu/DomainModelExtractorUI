@@ -28,12 +28,12 @@ const DMEWrapper = () => {
             })
             .then(response => {
                 if (response.status === 200) {
+                    setCheckDisable(false)
                     setDetectionResult(response.data.option)
                 } else {
                     alert("Get Model Image Failed!");
                     console.error(response)
                 }
-                setCheckDisable(false)
             })
     }
 
@@ -48,12 +48,14 @@ const DMEWrapper = () => {
                 if (response.status === 200) {
         		    let format = response.data.format;
         		    let content = response.data.content;
+                    let msg = response.data.msg;
+                    setGenerateDisable(false)
                     setDomainModelImg('data:image/'+format+';base64,'+content)
+                    setDetectionResult(detectionResult + msg)
                 } else {
                     alert("Get Model Image Failed!");
                     console.error(response)
                 }
-                setGenerateDisable(false)
             })
     }
 
@@ -73,12 +75,14 @@ const DMEWrapper = () => {
                             <div className="CodeMirrorWrapper">
                                 <CodeMirror
                                     value={userInput}
+                                    autoCursor={false}
                                     options={{
                                         lineNumbers: true,
                                         lineWrapping: true
                                       }}
                                     onChange={(editor, data, value) => {
-                                        //console.log('CodeMirror value:', value);
+                                        console.log('CodeMirror value:', value);
+                                        console.log(data)
                                         setUserInput(value)
                                     }}
                                 />
@@ -120,7 +124,7 @@ const DMEWrapper = () => {
                                         src={domainModelImg}
                                         alt=""
                                         className="img"
-                                        style={{ height: '100%' }}
+                                        style={{ width: "40vw", height: "30vh", "object-fit": "scale-down"}}
                                     />
                                 </Zoom>
                             </div>
