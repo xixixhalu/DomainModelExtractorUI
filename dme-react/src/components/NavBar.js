@@ -48,8 +48,8 @@ class Navbar extends Component {
 
         const LogoutMenu = (
             <ul className="navbar-nav navbar-light">
-                <li className="nav-item"> 
-		            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <li className="nav-item">
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a href="#" onClick={this.logOut.bind(this)} className="nav-link">
                         Logout
                     </a>
@@ -61,23 +61,21 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                 <div className="container-fluid">
-                    {/* <a className="navbar-brand" href="/">
-                        <img src="https://www.usc.edu/wp-content/themes/usc-homepage-2017/assets/images/favicon.ico" alt="USC Logo" width="30" height="30"></img>
-                    </a> */}
+
                     <a className="navbar-brand" href="/">Domain Model Extractor <span className="fw-lighter version">beta</span></a>
                 </div>
                 <button className="navbar-toggler"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#navbar1"
-                    aria-controls="navbar1"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#main-navbar"
+                    aria-controls="main-navbar"
                     aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
                 <div className="collapse navbar-collapse justify-content-md-center"
-                    id="navbar1">
+                    id="main-navbar">
 
                     <ul className="navbar-nav navbar-light">
                         <li className="nav-item">

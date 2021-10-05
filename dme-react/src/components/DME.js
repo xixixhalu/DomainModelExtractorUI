@@ -1,7 +1,7 @@
 import React from 'react'
 // import CodeMirror from '@uiw/react-codemirror';
-import {UnControlled as CodeMirror} from 'react-codemirror2'
-import {Redirect} from 'react-router-dom'
+import { UnControlled as CodeMirror } from 'react-codemirror2'
+import { Redirect } from 'react-router-dom'
 import Zoom from 'react-medium-image-zoom'
 import axios from 'axios'
 
@@ -13,7 +13,7 @@ import { useState } from 'react';
 
 const DMEWrapper = () => {
     const [userInput, setUserInput] = useState("As a user, I can input win conditions here.")
-    const [domainModelImg, setDomainModelImg] = useState(""); //https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg
+    const [domainModelImg, setDomainModelImg] = useState("");
     const [detectionResult, setDetectionResult] = useState("");
 
     const [disableCheck, setCheckDisable] = useState(false);
@@ -46,11 +46,11 @@ const DMEWrapper = () => {
             })
             .then(response => {
                 if (response.status === 200) {
-        		    let format = response.data.format;
-        		    let content = response.data.content;
+                    let format = response.data.format;
+                    let content = response.data.content;
                     let msg = response.data.msg;
                     setGenerateDisable(false)
-                    setDomainModelImg('data:image/'+format+';base64,'+content)
+                    setDomainModelImg('data:image/' + format + ';base64,' + content)
                     setDetectionResult(detectionResult + msg)
                 } else {
                     alert("Get Model Image Failed!");
@@ -61,12 +61,6 @@ const DMEWrapper = () => {
 
     return (<>
         <div className="DMEWrapper">
-            {/* <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="/">Domain Model Extractor
-                        <span className="fw-lighter version">&nbsp;	beta</span></a>
-                </div>
-            </nav> */}
             <div className="container-fluid h-100">
                 <div className="row h-100">
                     <div className="col">
@@ -79,10 +73,8 @@ const DMEWrapper = () => {
                                     options={{
                                         lineNumbers: true,
                                         lineWrapping: true
-                                      }}
+                                    }}
                                     onChange={(editor, data, value) => {
-                                        console.log('CodeMirror value:', value);
-                                        console.log(data)
                                         setUserInput(value)
                                     }}
                                 />
@@ -106,7 +98,7 @@ const DMEWrapper = () => {
                         <div className="row output-row DetectionResultWrapper">
                             <div className="DMEHeaer">Detection Result</div>
 
-                            <div className="spinner-border" role="status" style={{display: disableCheck ? 'block' : 'none' }}/>
+                            <div className="spinner-border" role="status" style={{ display: disableCheck ? 'block' : 'none' }} />
                             <textarea
                                 id="output_area"
                                 className="DetectionResultTextArea"
@@ -118,13 +110,13 @@ const DMEWrapper = () => {
                         <div className="row image-row ModelWrapper">
                             <div className="DMEHeaer">Domain Model</div>
                             <div className="img_area text-center">
-                                <div className="spinner-border" role="status" style={{display: disableGenerate ? 'block' : 'none' }}/>
+                                <div className="spinner-border" role="status" style={{ display: disableGenerate ? 'block' : 'none' }} />
                                 <Zoom zoomMargin={40}>
                                     <img
                                         src={domainModelImg}
                                         alt=""
                                         className="img"
-                                        style={{ width: "40vw", height: "30vh", "object-fit": "scale-down"}}
+                                        style={{ width: "40vw", height: "30vh", "object-fit": "scale-down" }}
                                     />
                                 </Zoom>
                             </div>
