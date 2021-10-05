@@ -37,10 +37,10 @@ def register():
 
     if exist_user:
         result = Response(
-                '{"error": "Denied: Email already exits."}',
-                status=409,
-                mimetype='application/json'
-            )
+            '{"error": "Denied: Email already exits."}',
+            status=409,
+            mimetype='application/json'
+        )
         return result
 
     user_id = users.insert({
@@ -95,7 +95,7 @@ def search_for_misspell():
     json_data = json.loads(str(request.data, encoding='utf-8'))
     input_str_list = json_data["userInput"].split("\n")
     result_msg = api_misspelling(input_str_list)
-    
+
     result = {"option": result_msg}
     return jsonify(result)
 
@@ -105,9 +105,9 @@ def get_result_img():
     json_data = json.loads(str(request.data, encoding='utf-8'))
     input_str_list = json_data["userInput"].split("\n")
     output = api_diagram_generator(input_str_list)
-        
-    #return jsonify({"img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"})
+
     return jsonify({"format": output[1], "content": output[0], "msg": output[2]})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
