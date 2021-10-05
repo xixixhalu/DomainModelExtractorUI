@@ -7,6 +7,9 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 
+import base64
+from dme_ui_api.api_functions import *
+
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'dmelogindb'
@@ -29,6 +32,16 @@ def register():
     password = bcrypt.generate_password_hash(
         request.get_json()['password']).decode('utf-8')
     created = datetime.utcnow()
+
+    exist_user = users.find_one({'email': email})
+
+    if exist_user:
+        result = Response(
+                '{"error": "Denied: Email already exits."}',
+                status=409,
+                mimetype='application/json'
+            )
+        return result
 
     user_id = users.insert({
         'first_name': first_name,
@@ -79,16 +92,22 @@ def login():
 
 @app.route('/detect', methods=['POST'])
 def search_for_misspell():
-    print(request.data)
-    result = {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
+    json_data = json.loads(str(request.data, encoding='utf-8'))
+    input_str_list = json_data["userInput"].split("\n")
+    result_msg = api_misspelling(input_str_list)
+    
+    result = {"option": result_msg}
     return jsonify(result)
 
 
 @app.route('/model', methods=['POST'])
 def get_result_img():
-    print(request.data)
-    return jsonify({"img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"})
-
+    json_data = json.loads(str(request.data, encoding='utf-8'))
+    input_str_list = json_data["userInput"].split("\n")
+    output = api_diagram_generator(input_str_list)
+        
+    #return jsonify({"img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"})
+    return jsonify({"format": output[1], "content": output[0], "msg": output[2]})
 
 if __name__ == '__main__':
     app.run(debug=True)

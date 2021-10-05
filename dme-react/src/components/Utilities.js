@@ -9,7 +9,13 @@ export const registerRequest = newUser => {
             password: newUser.password
         })
         .then(response => {
-            console.log("Registered")
+            // console.log("Registered")
+            return response
+        })
+        .catch(err => {
+            if (err.response.status === 409) {
+                return (err.response)
+            }
         })
 }
 
@@ -20,7 +26,7 @@ export const loginRequest = user => {
             password: user.password
         })
         .then(response => {
-            console.log("response: ", response);
+            // console.log("response: ", response);
             return response
         })
         .catch(err => {
