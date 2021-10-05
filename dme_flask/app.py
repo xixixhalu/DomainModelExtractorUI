@@ -1,4 +1,4 @@
-from flask import Flask, json, jsonify, request, Response
+from flask import Flask, json, jsonify, request, Response, render_template
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -13,7 +13,7 @@ from dme_ui_api.api_functions import *
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'dmelogindb'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/dmelogindb'
+app.config['MONGO_URI'] = 'mongodb://dmeuser:25MKMUp5vKBEpdn4@ec2-54-153-23-218.us-west-1.compute.amazonaws.com:27017/dmelogindb'
 app.config['JWT_SECRET_KEY'] = 'secret'
 
 mongo = PyMongo(app)
@@ -22,6 +22,9 @@ jwt = JWTManager(app)
 
 CORS(app)
 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/users/register', methods=["POST"])
 def register():
