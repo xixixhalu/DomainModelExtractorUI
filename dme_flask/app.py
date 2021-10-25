@@ -8,7 +8,7 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 
 import base64
-from dme_ui_api.api_functions import *
+#from dme_ui_api.api_functions import *
 
 app = Flask(__name__)
 
@@ -19,6 +19,12 @@ app.config['JWT_SECRET_KEY'] = 'secret'
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+
+app.config['MONGO_DBNAME'] = 'dmedb'
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/dmedb'
+app.config['JWT_SECRET_KEY'] = 'secret'
+
+mongo_dme = PyMongo(app)
 
 CORS(app)
 
@@ -107,6 +113,26 @@ def get_result_img():
     output = api_diagram_generator(input_str_list)
 
     return jsonify({"format": output[1], "content": output[0], "msg": output[2]})
+
+
+@app.route('/project', methods=["POST"])
+def create():
+    projects = mongo_dme.db.projects
+    project_name = request.get_json()['project_name']
+    conditions = request.get_json()['conditions']
+    img = request.get_json()['img']
+    created = datetime.utcnow()
+
+    project_id = projects.insert({
+        'project_name': project_name,
+        'last_name': conditions,
+        'img': img,
+        'created': created
+    })
+
+    new_project = projects.find_one({'_id': project_id})
+
+    return jsonify({'status': new_project['project_name'] + ' was created successfully'})
 
 
 if __name__ == '__main__':
