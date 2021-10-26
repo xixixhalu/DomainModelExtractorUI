@@ -132,7 +132,7 @@ def create_project():
 
     new_project = projects.find_one({'_id': project_id})
 
-    return jsonify({'status': new_project['project_name'] + ' was created successfully'})
+    return jsonify({'status_message': new_project['project_name'] + ' was created successfully.'})
 
 
 @app.route('/project/<project_id>', methods=["GET"])
@@ -146,11 +146,10 @@ def get_project(project_id):
             'conditions': response['conditions'],
             'img': response['img']
         }
-        print ("result: ", project)
         result = jsonify(project)
     else:
         result = Response(
-            '{"status": "The resource you requested could not be found."}',
+            '{"status_message": "The resource you requested could not be found."}',
             status=404,
             mimetype='application/json'
         )
@@ -166,13 +165,13 @@ def delete_project(project_id):
         print ("response: ", response)
         if response:
             result = Response(
-                '{"status": "The item was deleted successfully."}',
+                '{"status_message": "The item was deleted successfully."}',
                 status=200,
                 mimetype='application/json'
             )
     else:
         result = Response(
-            '{"status": "The resource you requested could not be found."}',
+            '{"status_message": "The resource you requested could not be found."}',
             status=404,
             mimetype='application/json'
         )
