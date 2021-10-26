@@ -125,7 +125,7 @@ def create():
 
     project_id = projects.insert({
         'project_name': project_name,
-        'last_name': conditions,
+        'conditions': conditions,
         'img': img,
         'created': created
     })
@@ -134,6 +134,29 @@ def create():
 
     return jsonify({'status': new_project['project_name'] + ' was created successfully'})
 
+
+@app.route('/project/<project_id>', methods=["GET"])
+def get(project_id):
+    projects = mongo_dme.db.projects
+    print ("id: ", project_id)
+    response = projects.find_one({'_id': ObjectId(project_id)})
+    print ("response: ", response)
+    if response:
+        project={
+            'project_id': project_id,
+            'project_name': response['project_name'],
+            'conditions': response['conditions'],
+            'img': response['img']
+        }
+        print ("result: ", project)
+        result = jsonify(project)
+    else:
+        result = Response(
+            '{"status": "The resource you requested could not be found."}',
+            status=404,
+            mimetype='application/json'
+        )
+    return result
 
 if __name__ == '__main__':
     app.run(debug=True)
