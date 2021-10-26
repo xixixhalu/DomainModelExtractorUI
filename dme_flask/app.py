@@ -116,7 +116,7 @@ def get_result_img():
 
 
 @app.route('/project', methods=["POST"])
-def create():
+def create_project():
     projects = mongo_dme.db.projects
     project_name = request.get_json()['project_name']
     conditions = request.get_json()['conditions']
@@ -136,11 +136,9 @@ def create():
 
 
 @app.route('/project/<project_id>', methods=["GET"])
-def get(project_id):
+def get_project(project_id):
     projects = mongo_dme.db.projects
-    print ("id: ", project_id)
     response = projects.find_one({'_id': ObjectId(project_id)})
-    print ("response: ", response)
     if response:
         project={
             'project_id': project_id,
@@ -150,6 +148,28 @@ def get(project_id):
         }
         print ("result: ", project)
         result = jsonify(project)
+    else:
+        result = Response(
+            '{"status": "The resource you requested could not be found."}',
+            status=404,
+            mimetype='application/json'
+        )
+    return result
+
+
+@app.route('/project/<project_id>', methods=["DELETE"])
+def delete_project(project_id):
+    projects = mongo_dme.db.projects
+    response = projects.find_one({'_id': ObjectId(project_id)})
+    if response:
+        response = projects.remove({'_id': ObjectId(project_id)})
+        print ("response: ", response)
+        if response:
+            result = Response(
+                '{"status": "The item was deleted successfully."}',
+                status=200,
+                mimetype='application/json'
+            )
     else:
         result = Response(
             '{"status": "The resource you requested could not be found."}',
