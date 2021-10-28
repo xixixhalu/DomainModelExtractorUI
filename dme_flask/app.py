@@ -119,14 +119,10 @@ def get_result_img():
 def create_project():
     projects = mongo_dme.db.projects
     project_name = request.get_json()['project_name']
-    conditions = request.get_json()['conditions']
-    img = request.get_json()['img']
     created = datetime.utcnow()
 
     project_id = projects.insert({
         'project_name': project_name,
-        'conditions': conditions,
-        'img': img,
         'created': created
     })
 
@@ -162,13 +158,39 @@ def delete_project(project_id):
     response = projects.find_one({'_id': ObjectId(project_id)})
     if response:
         response = projects.remove({'_id': ObjectId(project_id)})
-        print ("response: ", response)
         if response:
             result = Response(
                 '{"status_message": "The item was deleted successfully."}',
                 status=200,
                 mimetype='application/json'
             )
+    else:
+        result = Response(
+            '{"status_message": "The resource you requested could not be found."}',
+            status=404,
+            mimetype='application/json'
+        )
+    return result
+
+
+@app.route('/project/<project_id>', methods=["PUT"])
+def update_project(project_id):
+    projects = mongo_dme.db.projects
+    response = projects.find_one({'_id': ObjectId(project_id)})
+    if response:
+        project_name = request.get_json()['project_name']
+        conditions = request.get_json()['conditions']
+        img = request.get_json()['img']
+        updated = datetime.utcnow()
+
+        projects.update_one({'_id': ObjectId(project_id)}, { '$set': {
+            'project_name': project_name,
+            'conditions': conditions,
+            'img': img,
+            'updated': updated
+        }}, upsert=False)
+
+        return jsonify({'status_message': project_name + ' was updated successfully.'})
     else:
         result = Response(
             '{"status_message": "The resource you requested could not be found."}',
