@@ -43,88 +43,94 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
 ## APIs
 
-- Login: 
+### Login
 
-    - endpoint: `/users/login`  
+Login:
 
-    - method: **POST** `Content-Type: application/json`
+- endpoint: `/users/login`  
 
-    - request body: 
+- method: **POST** `Content-Type: application/json`
 
-        - ```json
-            {
-              "email": "happy@usc.edu",
-              "password": "happy"
-            }
-            ```
+- request body: 
 
-- Sign up: 
+    - ```json
+        {
+          "email": "happy@usc.edu",
+          "password": "happy"
+        }
+        ```
 
-    - endpoint: `/users/register`
+Sign up: 
 
-    - method: **POST**  `Content-Type: application/json`
+- endpoint: `/users/register`
 
-    - request body: 
+- method: **POST**  `Content-Type: application/json`
 
-        - ```json
-            {
-                "first_name": "Joe",
-                "last_name": "Biden",
-                "email": "Joe@whitehouse.gov",
-                "password": "icecream"
-            }
-            ```
+- request body: 
 
-- Check win conditions: 
+    - ```json
+        {
+            "first_name": "Joe",
+            "last_name": "Biden",
+            "email": "Joe@whitehouse.gov",
+            "password": "icecream"
+        }
+        ```
 
-    - endpoint: `/detect`
+### Check win conditions
 
-    - method: **POST**  `Content-Type: application/json`
+Check win conditions: 
 
-    - request body: 
+- endpoint: `/detect`
 
-        - ```json
-            {
-                "userInput": "win condtiions",
-            }
-            ```
+- method: **POST**  `Content-Type: application/json`
+
+- request body: 
+
+    - ```json
+        {
+            "userInput": "win condtiions",
+        }
+        ```
+    
+- response body:
+
+    - ```json
+        {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
+        ```
+
+Generate domain model: 
+
+- endpoint: `/model`
+
+- method: **POST**  `Content-Type: application/json`
+
+- request body: 
+
+    - ```json
+        {
+            "userInput": "win condtiions",
+        }
+        ```
         
-    - response body:
-    
-        - ```json
-            {"option": "Change Line 27: Word: webcraweler Change to: webcrawler"}
-            ```
-    
-- Generate domain model: 
 
-    - endpoint: `/model`
+- response body:
 
-    - method: **POST**  `Content-Type: application/json`
+    - ```json
+        {
+            "img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"
+        }
+        ```
 
-    - request body: 
+### Dashboard
 
-        - ```json
-            {
-                "userInput": "win condtiions",
-            }
-            ```
-            
-    
-    - response body:
-    
-        - ```json
-            {
-                "img": "https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Campus_One_Infinite_Loop_Sign.jpg"
-            }
-            ```
-    
-            
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
 
