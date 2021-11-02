@@ -164,7 +164,7 @@ def get_result_img():
 
 
 @app.route('/project', methods=["POST"])
-#@login_required
+@login_required
 def create_project():
     projects = mongo_dme.db.projects
     project_name = request.get_json()['project_name']
