@@ -1,7 +1,4 @@
-from re import T
-from flask import Flask, json, jsonify, request, Response
-import flask
-import flask_login
+from flask import Flask, json, jsonify, request, Response, render_template
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -17,7 +14,7 @@ import base64
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'dmelogindb'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/dmelogindb'
+app.config['MONGO_URI'] = 'mongodb://dmeuser:25MKMUp5vKBEpdn4@ec2-54-153-23-218.us-west-1.compute.amazonaws.com:27017/dmelogindb'
 app.config['JWT_SECRET_KEY'] = 'secret'
 
 mongo = PyMongo(app)
@@ -35,9 +32,9 @@ login.login_view = 'login'
 
 CORS(app)
 
-class User:
-    def __init__(self, user_id):
-        self.user_id = user_id
+@app.route('/')
+def index():
+    return render_template('index.html')
 
     @staticmethod
     def is_authenticated():
