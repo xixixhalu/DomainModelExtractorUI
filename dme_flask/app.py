@@ -14,7 +14,8 @@ import base64
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'dmelogindb'
-app.config['MONGO_URI'] = 'mongodb://dmeuser:25MKMUp5vKBEpdn4@ec2-54-153-23-218.us-west-1.compute.amazonaws.com:27017/dmelogindb'
+# app.config['MONGO_URI'] = 'mongodb://dmeuser:25MKMUp5vKBEpdn4@ec2-54-153-23-218.us-west-1.compute.amazonaws.com:27017/dmelogindb'
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/dmelogindb'
 app.config['JWT_SECRET_KEY'] = 'secret'
 
 mongo = PyMongo(app)
@@ -31,6 +32,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 CORS(app)
+
 
 @app.route('/')
 def index():
@@ -60,12 +62,10 @@ def index():
             return None
         return User(user_id=u['_id'])
 
-
     @login.unauthorized_handler
     def unauthorized_callback():
         print("unauthorized", flush=True)
         return flask.redirect('http://localhost:3000/')
-
 
     @app.route('/users/register', methods=["POST"])
     def register():
@@ -101,14 +101,13 @@ def index():
 
         return jsonify({'result': result})
 
-
     @app.route('/users/login', methods=['POST'])
     def login():
         users = mongo.db.users
         email = request.get_json()['email']
         password = request.get_json()['password']
         result = ""
-        
+
         response = users.find_one({'email': email})
 
         if response:
@@ -119,7 +118,8 @@ def index():
                     'email': response['email']
                 })
                 user_obj = User(user_id=str(response['_id']))
-                print ("This id was added to User " + str(response['_id']), flush=True)
+                print("This id was added to User " +
+                      str(response['_id']), flush=True)
                 login_user(user_obj, remember=True)
                 result = jsonify({'token': access_token})
                 next = request.args.get('next')
@@ -166,7 +166,7 @@ def create_project():
     projects = mongo_dme.db.projects
     project_name = request.get_json()['project_name']
     created = datetime.utcnow()
-    print(flask_login.current_user, flush =True)
+    print(flask_login.current_user, flush=True)
     project_id = projects.insert({
         'project_name': project_name,
         'created_by': flask_login.current_user.user_id,
@@ -186,12 +186,12 @@ def get_project(project_id):
     if response:
         if response['created_by'] != flask_login.current_user.user_id:
             result = Response(
-            '{"status_message": "Access Denied: You do not have permissions to access the service."}',
-            status=403,
-            mimetype='application/json'
-        ) 
-        else:           
-            project={
+                '{"status_message": "Access Denied: You do not have permissions to access the service."}',
+                status=403,
+                mimetype='application/json'
+            )
+        else:
+            project = {
                 'project_id': project_id,
                 'project_name': response['project_name'],
                 'conditions': response['conditions'],
@@ -215,11 +215,11 @@ def delete_project(project_id):
     if response:
         if response['created_by'] != flask_login.current_user.user_id:
             result = Response(
-            '{"status_message": "Access Denied: You do not have permissions to access the service."}',
-            status=403,
-            mimetype='application/json'
-        ) 
-        else:   
+                '{"status_message": "Access Denied: You do not have permissions to access the service."}',
+                status=403,
+                mimetype='application/json'
+            )
+        else:
             response = projects.remove({'_id': ObjectId(project_id)})
             if response:
                 result = Response(
@@ -244,17 +244,17 @@ def update_project(project_id):
     if response:
         if response['created_by'] != flask_login.current_user.user_id:
             result = Response(
-            '{"status_message": "Access Denied: You do not have permissions to access the service."}',
-            status=403,
-            mimetype='application/json'
-        ) 
+                '{"status_message": "Access Denied: You do not have permissions to access the service."}',
+                status=403,
+                mimetype='application/json'
+            )
         else:
             project_name = request.get_json()['project_name']
             conditions = request.get_json()['conditions']
             img = request.get_json()['img']
             updated = datetime.utcnow()
 
-            projects.update_one({'_id': ObjectId(project_id)}, { '$set': {
+            projects.update_one({'_id': ObjectId(project_id)}, {'$set': {
                 'project_name': project_name,
                 'conditions': conditions,
                 'img': img,
@@ -269,6 +269,7 @@ def update_project(project_id):
             mimetype='application/json'
         )
     return result
+
 
 if __name__ == '__main__':
     app.run(debug=True)
