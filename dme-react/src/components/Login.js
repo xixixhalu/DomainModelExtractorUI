@@ -32,10 +32,9 @@ class LoginWrapper extends Component {
                 localStorage.setItem('usertoken', response.data.token)
                 this.props.history.push(`/DME`)
                 return response.data.token
-            } else if (response.status === 401) {
+            } else if (response.status === 403) {
                 console.error("Login Error");
                 alert("User does not exist or invaild combination!");
-
             }
 
         })
@@ -66,7 +65,7 @@ class LoginWrapper extends Component {
                                     value={this.state.password}
                                     onChange={this.onChange} />
                             </div>
-                            <br/>
+                            <br />
                             <button type="submit" className="btn btn-lg btn-primary btn-block" disabled={!this.state.email || !this.state.password}>
                                 Sign in
                             </button>

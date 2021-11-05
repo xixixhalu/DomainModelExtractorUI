@@ -9,13 +9,10 @@ export const registerRequest = newUser => {
             password: newUser.password
         })
         .then(response => {
-            // console.log("Registered")
             return response
         })
         .catch(err => {
-            if (err.response.status === 409) {
-                return (err.response)
-            }
+            return (err.response)
         })
 }
 
@@ -30,8 +27,12 @@ export const loginRequest = user => {
             return response
         })
         .catch(err => {
-            if (err.response.status === 401) {
+            if (err.response.status === 403) {
                 return (err.response)
             }
         })
+}
+
+export const wait = (delay) => {
+    return new Promise(res => setTimeout(res, delay));
 }

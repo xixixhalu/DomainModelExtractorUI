@@ -1,4 +1,6 @@
-from flask import Flask, json, jsonify, request, Response, render_template
+from flask import Flask, json, jsonify, request, Response
+import flask
+import flask_login
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -9,12 +11,11 @@ from flask_jwt_extended import create_access_token
 from flask_login import LoginManager, login_user, login_required
 
 import base64
-#from dme_ui_api.api_functions import *
+# from dme_ui_api.api_functions import *
 
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'dmelogindb'
-# app.config['MONGO_URI'] = 'mongodb://dmeuser:25MKMUp5vKBEpdn4@ec2-54-153-23-218.us-west-1.compute.amazonaws.com:27017/dmelogindb'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/dmelogindb'
 app.config['JWT_SECRET_KEY'] = 'secret'
 
@@ -34,9 +35,9 @@ login.login_view = 'login'
 CORS(app)
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+class User:
+    def __init__(self, user_id):
+        self.user_id = user_id
 
     @staticmethod
     def is_authenticated():
@@ -128,13 +129,13 @@ def index():
             else:
                 result = Response(
                     '{"error": "Unauthorized: Invalid username and password."}',
-                    status=401,
+                    status=403,
                     mimetype='application/json'
                 )
         else:
             result = Response(
                 '{"error": "Unauthorized: No results found"}',
-                status=401,
+                status=403,
                 mimetype='application/json'
             )
         return result

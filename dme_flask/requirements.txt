@@ -1,5 +1,0 @@
-flask
-flask-pymongo
-flask-bcrypt
-flask-cors
-flask-jwt-extended

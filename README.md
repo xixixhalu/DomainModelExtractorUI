@@ -18,7 +18,7 @@ cd dme-react
 
 ### Back-end
 
-```
+```bash
 cd dme_flask
 ```
 
@@ -26,7 +26,13 @@ I am using [Pipenv](https://github.com/pypa/pipenv) for Python package managemen
 
 - install dependencies `pipenv install --dev`
 - activate virtual environment ` pipenv shell `
-- runs the app in the development mode `./run`  (for *nix/macOS)
+- runs the app in the development mode `./run_dev`  (for *nix/macOS, i.e. bash)
+
+```bash
+cd dme_flask/dme_ui_api
+```
+
+Follow the instruction on [xixixhalu/DomainModelExtractor]([xixixhalu/DomainModelExtractor (github.com)](https://github.com/xixixhalu/DomainModelExtractor)) , lunch NLP server.
 
 ### MongoDB
 
