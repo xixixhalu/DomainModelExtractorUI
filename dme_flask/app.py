@@ -163,6 +163,28 @@ def get_result_img():
     return jsonify({"format": output[1], "content": output[0], "msg": output[2]})
 
 
+@app.route('/project_list/', methods=["GET"])
+@login_required
+def get_project_list():
+    projects = mongo_dme.db.projects
+    response = projects.find({'created_by': ObjectId(flask_login.current_user.user_id)})
+    if response:
+        i = 0
+        all_projects = []
+        for item in response:
+            project = {
+                'project_id': str(item['_id']),
+                'project_name': item['project_name'],
+                'created': item['created']
+            }
+            if 'updated' in item:
+                project ['updated'] = item['updated']    
+            all_projects.append(project)
+            i = i+1
+        result = jsonify(all_projects)
+    return result
+
+
 @app.route('/project', methods=["POST"])
 @login_required
 def create_project():
